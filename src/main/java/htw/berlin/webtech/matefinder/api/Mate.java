@@ -2,6 +2,9 @@ package htw.berlin.webtech.matefinder.api;
 
 import java.math.BigDecimal;
 
+/**
+ * Good drink
+ */
 public class Mate {
 
     private long id;
