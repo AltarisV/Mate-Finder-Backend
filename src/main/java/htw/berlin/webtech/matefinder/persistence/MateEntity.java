@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.math.BigDecimal;
 
 @Entity(name = "mates")
-public class MateEntity {
+public class MateEntity implements IMateMaster {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,10 +24,12 @@ public class MateEntity {
 
     protected MateEntity() {}
 
+    @Override
     public Long getId() {
         return id;
     }
 
+    @Override
     public String getName() {
         return name;
     }
@@ -36,6 +38,7 @@ public class MateEntity {
         this.name = name;
     }
 
+    @Override
     public BigDecimal getPrice() {
         return price;
     }
