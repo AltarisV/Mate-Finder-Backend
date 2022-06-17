@@ -19,7 +19,7 @@ public class MateController {
         this.mateService = mateService;
     }
 
-
+    @CrossOrigin(origins = "https://drinkmate-finder.herokuapp.com/*")
     @GetMapping(path = "/api/mates")
     public ResponseEntity<List<Mate>> fetchMates() {
         return ResponseEntity.ok(mateService.findAll());
