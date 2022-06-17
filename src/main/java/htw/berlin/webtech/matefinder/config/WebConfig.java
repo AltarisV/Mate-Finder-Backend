@@ -16,7 +16,7 @@ public class WebConfig implements WebMvcConfigurer {
                 .allowedMethods("*")
                 .allowedOrigins(
                         "http://localhost:8080",
-                        "https://drinkmate-finder.herokuapp.com/"
+                        "https://drinkmate-finder.herokuapp.com"
                 );
     }
 }
