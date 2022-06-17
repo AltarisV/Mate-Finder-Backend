@@ -11,11 +11,11 @@ import java.net.URISyntaxException;
 import java.util.List;
 
 @RestController
-public class MateRestController {
+public class MateController {
 
     private final MateService mateService;
 
-    public MateRestController(MateService mateService) {
+    public MateController(MateService mateService) {
         this.mateService = mateService;
     }
 

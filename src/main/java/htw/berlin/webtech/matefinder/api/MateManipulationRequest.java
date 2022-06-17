@@ -12,6 +12,8 @@ public class MateManipulationRequest {
         this.price = price;
     }
 
+    public MateManipulationRequest() {}
+
     public String getName() {
         return name;
     }
