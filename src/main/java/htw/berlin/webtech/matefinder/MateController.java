@@ -10,6 +10,7 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
 
+@CrossOrigin(origins = "https://drinkmate-finder.herokuapp.com", maxAge = 3600)
 @RestController
 public class MateController {
 
