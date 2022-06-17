@@ -11,6 +11,7 @@ import java.net.URISyntaxException;
 import java.util.List;
 
 @RestController
+@CrossOrigin
 public class MateController {
 
     private final MateService mateService;
