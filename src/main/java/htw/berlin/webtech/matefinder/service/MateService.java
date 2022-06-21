@@ -12,51 +12,43 @@ import java.util.stream.Collectors;
 @Service
 public class MateService {
 
-    private final MateRepo repo;
+    private final MateRepo mateRepo;
 
-    public MateService(MateRepo repo) {
-        this.repo = repo;
-    }
-
-    public MateEntity save(MateEntity mate) {
-        return repo.save(mate);
-    }
-
-    public MateEntity get(Long id) {
-        return repo.findById(id).orElseThrow(RuntimeException::new);
+    public MateService(MateRepo mateRepo) {
+        this.mateRepo = mateRepo;
     }
 
     public List<Mate> findAll() {
-        List<MateEntity> mates = repo.findAll();
+        List<MateEntity> mates = mateRepo.findAll();
         return mates.stream()
                 .map(this::transformEntity)
                 .collect(Collectors.toList());
     }
 
     public Mate findById(Long id) {
-        var mateEntity = repo.findById(id);
+        var mateEntity = mateRepo.findById(id);
         return mateEntity.map(this::transformEntity).orElse(null);
     }
 
     public Mate create(MateManipulationRequest request){
         var MateEntity = new MateEntity(request.getName(), request.getPrice());
-        MateEntity = repo.save(MateEntity);
+        MateEntity = mateRepo.save(MateEntity);
         return transformEntity(MateEntity);
     }
 
     public Mate update(Long id, MateManipulationRequest request) {
-        var mateEntityOptional= repo.findById(id);
+        var mateEntityOptional= mateRepo.findById(id);
         if (mateEntityOptional.isEmpty()) return null;
         var mateEntity = mateEntityOptional.get();
         mateEntity.setName(request.getName()); mateEntity.setPrice(request.getPrice());
-        mateEntity = repo.save(mateEntity);
+        mateEntity = mateRepo.save(mateEntity);
         return transformEntity(mateEntity);
 
     }
 
     public boolean deleteById(Long id) {
-        if (!repo.existsById(id)) return false;
-        repo.deleteById(id);
+        if (!mateRepo.existsById(id)) return false;
+        mateRepo.deleteById(id);
         return true;
     }
 

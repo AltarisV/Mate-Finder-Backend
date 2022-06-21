@@ -8,13 +8,13 @@ public class MateEntity implements IMateMaster {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "mate_id")
+    @Column(name = "id")
     private Long id;
 
-    @Column(name = "mate_name", nullable = false)
+    @Column(name = "name", nullable = false)
     private String name;
 
-    @Column(name = "mate_price", nullable = false)
+    @Column(name = "price", nullable = false)
     private BigDecimal price;
 
     public MateEntity(String name, BigDecimal price) {
