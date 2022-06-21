@@ -1,8 +1,8 @@
-package htw.berlin.webtech.matefinder;
+package htw.berlin.webtech.matefinder.web;
 
-import htw.berlin.webtech.matefinder.api.Mate;
-import htw.berlin.webtech.matefinder.api.MateManipulationRequest;
-import htw.berlin.webtech.matefinder.persistence.MateService;
+import htw.berlin.webtech.matefinder.web.api.Mate;
+import htw.berlin.webtech.matefinder.web.api.MateManipulationRequest;
+import htw.berlin.webtech.matefinder.service.MateService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

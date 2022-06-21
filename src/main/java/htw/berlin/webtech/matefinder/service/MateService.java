@@ -1,7 +1,9 @@
-package htw.berlin.webtech.matefinder.persistence;
+package htw.berlin.webtech.matefinder.service;
 
-import htw.berlin.webtech.matefinder.api.Mate;
-import htw.berlin.webtech.matefinder.api.MateManipulationRequest;
+import htw.berlin.webtech.matefinder.web.api.Mate;
+import htw.berlin.webtech.matefinder.web.api.MateManipulationRequest;
+import htw.berlin.webtech.matefinder.persistence.MateEntity;
+import htw.berlin.webtech.matefinder.persistence.MateRepo;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
