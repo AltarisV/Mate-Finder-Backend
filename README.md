@@ -1,3 +1,5 @@
+[![CI](https://github.com/SpiegelV/Mate-Finder-Backend/actions/workflows/ci.yml/badge.svg)](https://github.com/SpiegelV/Mate-Finder-Backend/actions/workflows/ci.yml)
+
 # Mate-Finder
 Mate-Finder: A University project for the Business Computing 3rd semester-course "Web Technologies".
 Project developed by: Lucas Leiva (MNr. 579799) and Leon Schüßler (MNr. 579906).
