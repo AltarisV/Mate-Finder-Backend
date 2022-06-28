@@ -7,6 +7,7 @@ import htw.berlin.webtech.matefinder.service.MateService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
@@ -30,10 +31,15 @@ public class MateController {
     }
 
     @PostMapping(path = "/api/mates")
-    public ResponseEntity<Void> createMate(@RequestBody MateManipulationRequest request) throws URISyntaxException {
-        var mate = mateService.create(request);
-        URI uri = new URI("/api/mates/" + mate.getId());
-        return ResponseEntity.created(uri).build();
+    public ResponseEntity<Void> createMate(@Valid @RequestBody MateManipulationRequest request) throws URISyntaxException {
+        var valid = validate(request);
+        if (valid) {
+            var mate = mateService.create(request);
+            URI uri = new URI("/api/mates/" + mate.getId());
+            return ResponseEntity.created(uri).build();
+        } else {
+            return ResponseEntity.badRequest().build();
+        }
     }
 
     @PutMapping(path = "/api/mates/{id}")
@@ -46,5 +52,11 @@ public class MateController {
     public ResponseEntity<Void> deleteMate(@PathVariable Long id) {
         boolean succesful = mateService.deleteById(id);
         return succesful? ResponseEntity.ok().build() : ResponseEntity.notFound().build();
+    }
+
+    private boolean validate(MateManipulationRequest request) {
+        return request.getName() != null
+                && !request.getName().isBlank()
+                && request.getPrice() != null;
     }
 }
