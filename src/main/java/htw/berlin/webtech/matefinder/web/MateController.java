@@ -32,14 +32,12 @@ public class MateController {
 
     @PostMapping(path = "/api/mates")
     public ResponseEntity<Void> createMate(@Valid @RequestBody MateManipulationRequest request) throws URISyntaxException {
-        var valid = validate(request);
-        if (valid) {
             var mate = mateService.create(request);
             URI uri = new URI("/api/mates/" + mate.getId());
-            return ResponseEntity.created(uri).build();
-        } else {
-            return ResponseEntity.badRequest().build();
-        }
+            return ResponseEntity
+                    .created(uri)
+                    .header("Access-Control-Expose-Headers", "Location")
+                    .build();
     }
 
     @PutMapping(path = "/api/mates/{id}")
