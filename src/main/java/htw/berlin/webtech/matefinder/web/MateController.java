@@ -51,10 +51,4 @@ public class MateController {
         boolean succesful = mateService.deleteById(id);
         return succesful? ResponseEntity.ok().build() : ResponseEntity.notFound().build();
     }
-
-    private boolean validate(MateManipulationRequest request) {
-        return request.getName() != null
-                && !request.getName().isBlank()
-                && request.getPrice() != null;
-    }
 }

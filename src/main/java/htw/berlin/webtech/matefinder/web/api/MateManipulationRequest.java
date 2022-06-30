@@ -1,14 +1,17 @@
 package htw.berlin.webtech.matefinder.web.api;
 
+import org.springframework.format.annotation.NumberFormat;
+
 import javax.validation.constraints.*;
 import java.math.BigDecimal;
 
 public class MateManipulationRequest {
 
-    @Size(min = 3, message = "Please prvide a name longer than 3 characters")
+    @Size(min = 3, message = "Please provide a name longer than 3 characters")
     private String name;
 
     @Positive(message = "Mates must have a price bigger than zero")
+    @IsNumber (message = "Should be a Number")
     private BigDecimal price;
 
     public MateManipulationRequest(String name, BigDecimal price) {
