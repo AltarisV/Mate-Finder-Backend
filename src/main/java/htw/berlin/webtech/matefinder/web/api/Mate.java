@@ -7,7 +7,7 @@ import java.math.BigDecimal;
  */
 public class Mate {
 
-    private long id;
+    private final long id;
     private String name;
     private BigDecimal price;
 
