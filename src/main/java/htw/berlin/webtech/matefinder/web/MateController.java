@@ -17,7 +17,7 @@ public class MateController {
 
     private final MateService mateService;
 
-    public MateController(MateRepo mateRepo, MateService mateService) { this.mateService = mateService; }
+    public MateController(MateService mateService) { this.mateService = mateService; }
 
     @GetMapping(path = "/api/mates")
     public ResponseEntity<List<Mate>> fetchMates() {
