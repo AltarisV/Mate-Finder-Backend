@@ -1,7 +1,5 @@
 package htw.berlin.webtech.matefinder.web.api;
 
-import org.springframework.format.annotation.NumberFormat;
-
 import javax.validation.constraints.*;
 import java.math.BigDecimal;
 
@@ -11,7 +9,6 @@ public class MateManipulationRequest {
     private String name;
 
     @Positive(message = "Mates must have a price bigger than zero")
-    @IsNumber (message = "Should be a Number")
     private BigDecimal price;
 
     public MateManipulationRequest(String name, BigDecimal price) {
