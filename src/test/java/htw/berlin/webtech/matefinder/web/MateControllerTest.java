@@ -14,8 +14,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import java.math.BigDecimal;
 import java.util.List;
 
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.anyLong;
+import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.Mockito.doReturn;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
@@ -31,16 +30,16 @@ public class MateControllerTest {
 
     @MockBean
     private MateService mateService;
-    private List<Long> ratingIds;
+    private List<Integer> ratingIds;
 
     @Test
     @DisplayName("should return found mate from mateservice")
     void foundMateTest() throws Exception {
         // given
         var mates = List.of(
-                new Mate(1L, "Club-Mate", new BigDecimal("1.19"), ratingIds),
-                new Mate(2L, "Ulticha Mate", new BigDecimal("1.29"), ratingIds),
-                new Mate(3L, "ChariTea Mate", new BigDecimal("1.79"), ratingIds)
+                new Mate(1, "Club-Mate", new BigDecimal("1.19"), ratingIds),
+                new Mate(2, "Ulticha Mate", new BigDecimal("1.29"), ratingIds),
+                new Mate(3, "ChariTea Mate", new BigDecimal("1.79"), ratingIds)
         );
         doReturn(mates).when(mateService).findAll();
 
@@ -64,7 +63,7 @@ public class MateControllerTest {
     @DisplayName("should return 404 if mate not found")
     void mateNotFoundTest() throws Exception {
         // given
-        doReturn(null).when(mateService).findById(anyLong());
+        doReturn(null).when(mateService).findById(anyInt());
 
         // when
         mockMvc.perform(get("/api/mates/9001"))
@@ -76,7 +75,7 @@ public class MateControllerTest {
     @DisplayName("should return 201 and Location Header when creating a Mate")
     void createMateTest() throws Exception {
         String mateToCreateAsJson = "{\"name\": \"Club-Mate\", \"price\": \"1.19\"}";
-        var mate = new Mate(9001L,null, null, ratingIds);
+        var mate = new Mate(9001,null, null, ratingIds);
         doReturn(mate).when(mateService).create(any());
 
         // when

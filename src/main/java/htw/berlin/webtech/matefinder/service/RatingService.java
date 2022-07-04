@@ -31,7 +31,7 @@ public class RatingService {
                 .collect(Collectors.toList());
     }
 
-    public Rating findById(Long id) {
+    public Rating findById(int id) {
         var ratingEntity = ratingRepo.findById(id);
         return ratingEntity.map(this::transformEntity).orElse(null);
     }
@@ -43,7 +43,7 @@ public class RatingService {
         return transformEntity(RatingEntity);
     }
 
-    public Rating update(Long id, RatingManipulationRequest request) {
+    public Rating update(int id, RatingManipulationRequest request) {
         var ratingEntityOptional= ratingRepo.findById(id);
         if (ratingEntityOptional.isEmpty()) return null;
         var ratingEntity = ratingEntityOptional.get();

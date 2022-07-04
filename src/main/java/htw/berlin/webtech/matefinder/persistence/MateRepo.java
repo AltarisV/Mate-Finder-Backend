@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface MateRepo extends JpaRepository<MateEntity, Long> {
+public interface MateRepo extends JpaRepository<MateEntity, Integer> {
 
     List<MateEntity> findAllByName(String name);
 

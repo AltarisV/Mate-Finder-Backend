@@ -28,7 +28,7 @@ public class RatingController {
     }
 
     @GetMapping(path = "/api/ratings/{id}")
-    public ResponseEntity<Rating> fetchRatingById(@PathVariable Long id) {
+    public ResponseEntity<Rating> fetchRatingById(@PathVariable int id) {
         var rating = ratingService.findById(id);
         return rating != null? ResponseEntity.ok(rating) : ResponseEntity.notFound().build();
     }
@@ -44,7 +44,7 @@ public class RatingController {
     }
 
     @PutMapping(path = "/api/ratings/{id}")
-    public ResponseEntity<Rating> updateRating(@PathVariable Long id, @RequestBody RatingManipulationRequest request) {
+    public ResponseEntity<Rating> updateRating(@PathVariable int id, @RequestBody RatingManipulationRequest request) {
         var rating = ratingService.update(id, request);
         return rating != null? ResponseEntity.ok(rating) : ResponseEntity.notFound().build();
     }

@@ -20,7 +20,7 @@ public class MateServiceTest implements WithAssertions {
     @InjectMocks
     private MateService underTest;
 
-    Long givenId = 111L;
+    int givenId = 111;
 
     @Test
     @DisplayName("should return true if deleted successfully")

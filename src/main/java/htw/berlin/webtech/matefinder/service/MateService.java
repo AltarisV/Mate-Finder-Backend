@@ -27,7 +27,7 @@ public class MateService {
                 .collect(Collectors.toList());
     }
 
-    public Mate findById(Long id) {
+    public Mate findById(int id) {
         var mateEntity = mateRepo.findById(id);
         return mateEntity.map(mateTransformer::transformEntity).orElse(null);
     }
@@ -38,7 +38,7 @@ public class MateService {
         return mateTransformer.transformEntity(MateEntity);
     }
 
-    public Mate update(Long id, MateManipulationRequest request) {
+    public Mate update(int id, MateManipulationRequest request) {
         var mateEntityOptional= mateRepo.findById(id);
         if (mateEntityOptional.isEmpty()) return null;
         var mateEntity = mateEntityOptional.get();
@@ -47,7 +47,7 @@ public class MateService {
         return mateTransformer.transformEntity(mateEntity);
     }
 
-    public boolean deleteById(Long id) {
+    public boolean deleteById(int id) {
         if (!mateRepo.existsById(id)) return false;
         mateRepo.deleteById(id);
         return true;

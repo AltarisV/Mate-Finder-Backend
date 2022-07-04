@@ -7,18 +7,18 @@ import java.util.List;
 
 public class Mate {
 
-    private final Long id;
+    private final int id;
     private String name;
     private BigDecimal price;
     private List<RatingEntity> ratings;
 
-    public Mate(Long id, String name, BigDecimal price, List<Long> ratingIds) {
+    public Mate(int id, String name, BigDecimal price, List<Integer> ratingIds) {
         this.id = id;
         this.name = name;
         this.price = price;
     }
 
-    public long getId() {
+    public int getId() {
         return id;
     }
 

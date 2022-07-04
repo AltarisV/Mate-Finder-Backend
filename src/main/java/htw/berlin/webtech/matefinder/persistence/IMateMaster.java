@@ -3,7 +3,7 @@ package htw.berlin.webtech.matefinder.persistence;
 import java.math.BigDecimal;
 
 public interface IMateMaster {
-    Long getId();
+    int getId();
 
     String getName();
 

@@ -11,7 +11,7 @@ public class MateEntity implements IMateMaster {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private Long id;
+    private int id;
 
     @Column(name = "name", nullable = false)
     private String name;
@@ -30,7 +30,7 @@ public class MateEntity implements IMateMaster {
     protected MateEntity() {}
 
     @Override
-    public Long getId() {
+    public int getId() {
         return id;
     }
 

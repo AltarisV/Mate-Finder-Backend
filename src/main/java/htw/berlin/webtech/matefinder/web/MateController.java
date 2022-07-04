@@ -25,7 +25,7 @@ public class MateController {
     }
 
     @GetMapping(path = "/api/mates/{id}")
-    public ResponseEntity<Mate> fetchMatebyId(@PathVariable Long id) {
+    public ResponseEntity<Mate> fetchMatebyId(@PathVariable int id) {
         var mate = mateService.findById(id);
         return mate != null? ResponseEntity.ok(mate) : ResponseEntity.notFound().build();
     }
@@ -41,15 +41,15 @@ public class MateController {
     }
 
     @PutMapping(path = "/api/mates/{id}")
-    public ResponseEntity<Mate> updateMate(@PathVariable Long id,@RequestBody MateManipulationRequest request) {
+    public ResponseEntity<Mate> updateMate(@PathVariable int id,@RequestBody MateManipulationRequest request) {
         var mate = mateService.update(id, request);
         return mate != null? ResponseEntity.ok(mate) : ResponseEntity.notFound().build();
     }
 
     @DeleteMapping(path = "/api/mates/{id}")
-    public ResponseEntity<Void> deleteMate(@PathVariable Long id) {
-        boolean succesful = mateService.deleteById(id);
-        return succesful? ResponseEntity.ok().build() : ResponseEntity.notFound().build();
+    public ResponseEntity<Void> deleteMate(@PathVariable int id) {
+        boolean succesfull = mateService.deleteById(id);
+        return succesfull? ResponseEntity.ok().build() : ResponseEntity.notFound().build();
     }
 
     private boolean validate(MateManipulationRequest request) {

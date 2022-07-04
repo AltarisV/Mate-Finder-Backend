@@ -6,9 +6,9 @@ public class RatingManipulationRequest {
 
     private int value;
 
-    private Long mateid;
+    private int mateid;
 
-    public RatingManipulationRequest(int value, Long mateid) {
+    public RatingManipulationRequest(int value, int mateid) {
         this.value = value;
         this.mateid = mateid;
     }
@@ -23,11 +23,11 @@ public class RatingManipulationRequest {
         this.value = value;
     }
 
-    public Long getMateid() {
+    public int getMateid() {
         return mateid;
     }
 
-    public void setMateid(Long mateid) {
+    public void setMateid(int mateid) {
         this.mateid = mateid;
     }
 }

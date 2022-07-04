@@ -2,17 +2,17 @@ package htw.berlin.webtech.matefinder.web.api;
 
 public class Rating {
 
-    private final Long id;
+    private final int id;
     private final Mate mate;
     private int value;
 
-    public Rating(Long id, Mate mate, int value) {
+    public Rating(int id, Mate mate, int value) {
         this.id = id;
         this.mate = mate;
         this.value = value;
     }
 
-    public Long getId() {
+    public int getId() {
         return id;
     }
 
