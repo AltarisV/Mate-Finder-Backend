@@ -4,7 +4,6 @@ import javax.validation.constraints.Positive;
 
 public class RatingManipulationRequest {
 
-    @Positive
     private int value;
 
     private Long mateid;

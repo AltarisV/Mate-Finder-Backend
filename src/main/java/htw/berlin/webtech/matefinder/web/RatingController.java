@@ -3,6 +3,7 @@ package htw.berlin.webtech.matefinder.web;
 import htw.berlin.webtech.matefinder.service.RatingService;
 import htw.berlin.webtech.matefinder.web.api.Rating;
 import htw.berlin.webtech.matefinder.web.api.RatingManipulationRequest;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,6 +15,7 @@ import java.util.List;
 @RestController
 public class RatingController {
 
+    @Autowired
     private final RatingService ratingService;
 
     public RatingController(RatingService ratingService) {
