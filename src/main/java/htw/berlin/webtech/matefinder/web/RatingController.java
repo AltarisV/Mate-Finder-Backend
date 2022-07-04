@@ -27,7 +27,7 @@ public class RatingController {
         return ResponseEntity.ok(ratingService.findAllByMate(mateid));
     }
 
-    @GetMapping(path = "/api/mates/{id}")
+    @GetMapping(path = "/api/ratings/{id}")
     public ResponseEntity<Rating> fetchRatingById(@PathVariable Long id) {
         var rating = ratingService.findById(id);
         return rating != null? ResponseEntity.ok(rating) : ResponseEntity.notFound().build();
