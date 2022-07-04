@@ -43,7 +43,6 @@ public class MateService {
         mateEntity.setName(request.getName()); mateEntity.setPrice(request.getPrice());
         mateEntity = mateRepo.save(mateEntity);
         return transformEntity(mateEntity);
-
     }
 
     public boolean deleteById(Long id) {
