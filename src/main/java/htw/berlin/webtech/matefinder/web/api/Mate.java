@@ -1,17 +1,18 @@
 package htw.berlin.webtech.matefinder.web.api;
 
-import java.math.BigDecimal;
+import htw.berlin.webtech.matefinder.persistence.RatingEntity;
 
-/**
- * Good drink
- */
+import java.math.BigDecimal;
+import java.util.List;
+
 public class Mate {
 
-    private final long id;
+    private final Long id;
     private String name;
     private BigDecimal price;
+    private List<RatingEntity> ratings;
 
-    public Mate(long id, String name, BigDecimal price) {
+    public Mate(Long id, String name, BigDecimal price) {
         this.id = id;
         this.name = name;
         this.price = price;
@@ -36,4 +37,6 @@ public class Mate {
     public void setPrice(BigDecimal price) {
         this.price = price;
     }
+
+    public List<RatingEntity> getRatings() { return ratings; }
 }

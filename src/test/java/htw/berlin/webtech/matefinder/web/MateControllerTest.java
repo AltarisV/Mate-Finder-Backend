@@ -39,9 +39,9 @@ public class MateControllerTest {
     void foundMateTest() throws Exception {
         // given
         var mates = List.of(
-                new Mate(1, "Club-Mate", new BigDecimal("1.19")),
-                new Mate(2, "Ulticha Mate", new BigDecimal("1.29")),
-                new Mate(3, "ChariTea Mate", new BigDecimal("1.79"))
+                new Mate(1L, "Club-Mate", new BigDecimal("1.19")),
+                new Mate(2L, "Ulticha Mate", new BigDecimal("1.29")),
+                new Mate(3L, "ChariTea Mate", new BigDecimal("1.79"))
         );
         doReturn(mates).when(mateService).findAll();
 
@@ -77,7 +77,7 @@ public class MateControllerTest {
     @DisplayName("should return 201 and Location Header when creating a Mate")
     void createMateTest() throws Exception {
         String mateToCreateAsJson = "{\"name\": \"Club-Mate\", \"price\": \"1.19\"}";
-        var mate = new Mate(9001,null, null);
+        var mate = new Mate(9001L,null, null);
         doReturn(mate).when(mateService).create(any());
 
         // when
