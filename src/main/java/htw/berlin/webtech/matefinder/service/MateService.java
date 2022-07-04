@@ -13,27 +13,29 @@ import java.util.stream.Collectors;
 public class MateService {
 
     private final MateRepo mateRepo;
+    private final MateTransformer mateTransformer;
 
-    public MateService(MateRepo mateRepo) {
+    public MateService(MateRepo mateRepo, MateTransformer mateTransformer) {
         this.mateRepo = mateRepo;
+        this.mateTransformer = mateTransformer;
     }
 
     public List<Mate> findAll() {
         List<MateEntity> mates = mateRepo.findAll();
         return mates.stream()
-                .map(this::transformEntity)
+                .map(mateTransformer::transformEntity)
                 .collect(Collectors.toList());
     }
 
     public Mate findById(Long id) {
         var mateEntity = mateRepo.findById(id);
-        return mateEntity.map(this::transformEntity).orElse(null);
+        return mateEntity.map(mateTransformer::transformEntity).orElse(null);
     }
 
     public Mate create(MateManipulationRequest request){
         var MateEntity = new MateEntity(request.getName(), request.getPrice());
         MateEntity = mateRepo.save(MateEntity);
-        return transformEntity(MateEntity);
+        return mateTransformer.transformEntity(MateEntity);
     }
 
     public Mate update(Long id, MateManipulationRequest request) {
@@ -42,20 +44,12 @@ public class MateService {
         var mateEntity = mateEntityOptional.get();
         mateEntity.setName(request.getName()); mateEntity.setPrice(request.getPrice());
         mateEntity = mateRepo.save(mateEntity);
-        return transformEntity(mateEntity);
+        return mateTransformer.transformEntity(mateEntity);
     }
 
     public boolean deleteById(Long id) {
         if (!mateRepo.existsById(id)) return false;
         mateRepo.deleteById(id);
         return true;
-    }
-
-    private Mate transformEntity(MateEntity mateEntity) {
-        return new Mate(
-                mateEntity.getId(),
-                mateEntity.getName(),
-                mateEntity.getPrice()
-        );
     }
 }

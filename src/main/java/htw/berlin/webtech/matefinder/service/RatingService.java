@@ -1,10 +1,8 @@
 package htw.berlin.webtech.matefinder.service;
 
-import htw.berlin.webtech.matefinder.persistence.MateEntity;
+import htw.berlin.webtech.matefinder.persistence.MateRepo;
 import htw.berlin.webtech.matefinder.persistence.RatingEntity;
 import htw.berlin.webtech.matefinder.persistence.RatingRepo;
-import htw.berlin.webtech.matefinder.web.api.Mate;
-import htw.berlin.webtech.matefinder.web.api.MateManipulationRequest;
 import htw.berlin.webtech.matefinder.web.api.Rating;
 import htw.berlin.webtech.matefinder.web.api.RatingManipulationRequest;
 import org.springframework.stereotype.Service;
@@ -16,15 +14,21 @@ import java.util.stream.Collectors;
 public class RatingService {
 
 
-    public final RatingRepo ratingRepo;
+    private final RatingRepo ratingRepo;
+    private final MateRepo mateRepo;
+    private final MateTransformer mateTransformer;
 
-    public RatingService(RatingRepo ratingRepo) {
+    public RatingService(RatingRepo ratingRepo, MateRepo mateRepo, MateTransformer mateTransformer) {
         this.ratingRepo = ratingRepo;
+        this.mateRepo = mateRepo;
+        this.mateTransformer = mateTransformer;
     }
 
-    public List<Rating> findAllByMate(Long mateid){
-        List<RatingEntity> ratings = ratingRepo.findAllByMateid(mateid);
-        return ratings.stream().map(this::transformEntity).collect(Collectors.toList());
+    public List<Rating> findAll() {
+        List<RatingEntity> ratings = ratingRepo.findAll();
+        return ratings.stream()
+                .map(this::transformEntity)
+                .collect(Collectors.toList());
     }
 
     public Rating findById(Long id) {
@@ -33,7 +37,8 @@ public class RatingService {
     }
 
     public Rating create(RatingManipulationRequest request){
-        var RatingEntity = new RatingEntity(request.getMateid(), request.getValue());
+        var mate = mateRepo.findById(request.getMateid()).orElseThrow();
+        var RatingEntity = new RatingEntity(mate, request.getValue());
         RatingEntity = ratingRepo.save(RatingEntity);
         return transformEntity(RatingEntity);
     }
@@ -50,7 +55,7 @@ public class RatingService {
     private Rating transformEntity(RatingEntity ratingEntity) {
         return new Rating(
                 ratingEntity.getId(),
-                ratingEntity.getMateid(),
+                mateTransformer.transformEntity(ratingEntity.getMate()),
                 ratingEntity.getValue()
         );
     }

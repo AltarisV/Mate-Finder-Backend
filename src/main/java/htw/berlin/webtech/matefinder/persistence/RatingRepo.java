@@ -6,5 +6,4 @@ import java.util.List;
 
 public interface RatingRepo extends JpaRepository<RatingEntity, Long> {
 
-    List<RatingEntity> findAllByMateid(Long mateid);
 }

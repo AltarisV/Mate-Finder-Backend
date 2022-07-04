@@ -12,7 +12,7 @@ public class Mate {
     private BigDecimal price;
     private List<RatingEntity> ratings;
 
-    public Mate(Long id, String name, BigDecimal price) {
+    public Mate(Long id, String name, BigDecimal price, List<Long> ratingIds) {
         this.id = id;
         this.name = name;
         this.price = price;

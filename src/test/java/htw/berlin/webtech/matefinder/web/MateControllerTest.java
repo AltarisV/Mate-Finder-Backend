@@ -12,12 +12,10 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
 import java.math.BigDecimal;
-import java.util.Collections;
 import java.util.List;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyLong;
-import static org.mockito.ArgumentMatchers.contains;
 import static org.mockito.Mockito.doReturn;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
@@ -33,15 +31,16 @@ public class MateControllerTest {
 
     @MockBean
     private MateService mateService;
+    private List<Long> ratingIds;
 
     @Test
     @DisplayName("should return found mate from mateservice")
     void foundMateTest() throws Exception {
         // given
         var mates = List.of(
-                new Mate(1L, "Club-Mate", new BigDecimal("1.19")),
-                new Mate(2L, "Ulticha Mate", new BigDecimal("1.29")),
-                new Mate(3L, "ChariTea Mate", new BigDecimal("1.79"))
+                new Mate(1L, "Club-Mate", new BigDecimal("1.19"), ratingIds),
+                new Mate(2L, "Ulticha Mate", new BigDecimal("1.29"), ratingIds),
+                new Mate(3L, "ChariTea Mate", new BigDecimal("1.79"), ratingIds)
         );
         doReturn(mates).when(mateService).findAll();
 
@@ -77,7 +76,7 @@ public class MateControllerTest {
     @DisplayName("should return 201 and Location Header when creating a Mate")
     void createMateTest() throws Exception {
         String mateToCreateAsJson = "{\"name\": \"Club-Mate\", \"price\": \"1.19\"}";
-        var mate = new Mate(9001L,null, null);
+        var mate = new Mate(9001L,null, null, ratingIds);
         doReturn(mate).when(mateService).create(any());
 
         // when

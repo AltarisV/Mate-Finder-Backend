@@ -2,6 +2,8 @@ package htw.berlin.webtech.matefinder.persistence;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity(name = "mates")
 public class MateEntity implements IMateMaster {
@@ -16,6 +18,9 @@ public class MateEntity implements IMateMaster {
 
     @Column(name = "price", nullable = false)
     private BigDecimal price;
+
+    @OneToMany(mappedBy = "mate", fetch = FetchType.EAGER)
+    private List<RatingEntity> ratings = new ArrayList<>();
 
     public MateEntity(String name, BigDecimal price) {
         this.name = name;
@@ -45,5 +50,13 @@ public class MateEntity implements IMateMaster {
 
     public void setPrice(BigDecimal price) {
         this.price = price;
+    }
+
+    public List<RatingEntity> getRatings() {
+        return ratings;
+    }
+
+    public void setRatings(List<RatingEntity> ratings) {
+        this.ratings = ratings;
     }
 }

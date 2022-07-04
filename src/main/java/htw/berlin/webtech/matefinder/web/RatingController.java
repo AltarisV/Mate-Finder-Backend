@@ -1,8 +1,6 @@
 package htw.berlin.webtech.matefinder.web;
 
 import htw.berlin.webtech.matefinder.service.RatingService;
-import htw.berlin.webtech.matefinder.web.api.Mate;
-import htw.berlin.webtech.matefinder.web.api.MateManipulationRequest;
 import htw.berlin.webtech.matefinder.web.api.Rating;
 import htw.berlin.webtech.matefinder.web.api.RatingManipulationRequest;
 import org.springframework.http.ResponseEntity;
@@ -23,8 +21,8 @@ public class RatingController {
     }
 
     @GetMapping(path = "/api/ratings")
-    public ResponseEntity<List<Rating>> fetchRatingsByMateid(Long mateid) {
-        return ResponseEntity.ok(ratingService.findAllByMate(mateid));
+    public ResponseEntity<List<Rating>> fetchRatings() {
+        return ResponseEntity.ok(ratingService.findAll());
     }
 
     @GetMapping(path = "/api/ratings/{id}")

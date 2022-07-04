@@ -10,14 +10,15 @@ public class RatingEntity {
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "mateid")
-    private Long mateid;
+    @ManyToOne(cascade = CascadeType.MERGE)
+    @JoinColumn(name = "mateid", referencedColumnName = "id")
+    private MateEntity mate;
 
     @Column(name = "value")
     private int value;
 
-    public RatingEntity(Long mateid, int value) {
-        this.mateid = mateid;
+    public RatingEntity(MateEntity mate, int value) {
+        this.mate = mate;
         this.value = value;
     }
 
@@ -27,8 +28,8 @@ public class RatingEntity {
         return id;
     }
 
-    public Long getMateid() {
-        return mateid;
+    public MateEntity getMate() {
+        return mate;
     }
 
     public int getValue() {
