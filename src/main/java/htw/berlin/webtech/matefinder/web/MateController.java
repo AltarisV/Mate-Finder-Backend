@@ -48,8 +48,8 @@ public class MateController {
 
     @DeleteMapping(path = "/api/mates/{id}")
     public ResponseEntity<Void> deleteMate(@PathVariable int id) {
-        boolean succesfull = mateService.deleteById(id);
-        return succesfull? ResponseEntity.ok().build() : ResponseEntity.notFound().build();
+        boolean successful = mateService.deleteById(id);
+        return successful? ResponseEntity.ok().build() : ResponseEntity.notFound().build();
     }
 
     private boolean validate(MateManipulationRequest request) {
